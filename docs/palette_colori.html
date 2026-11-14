@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DaVinciDocs — Palette colori</title>
+<style>
+  :root{
+    --navy:#213A46; --sand:#CEAA80; --white:#FFFFFF; --rosso:#D32F2F; --rosso-scuro:#B71C1C;
+    --navy-rgb:33,58,86; --sand-rgb:206,170,128;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#F6F4F0; color:var(--navy); font-family:'Segoe UI',Roboto,Arial,sans-serif; line-height:1.55; }
+  header{ background:var(--navy); color:var(--white); padding:32px 24px; }
+  header h1{ margin:0; font-size:28px; }
+  header p{ margin:6px 0 0; color:var(--sand); }
+  main{ max-width:960px; margin:0 auto; padding:32px 24px 64px; }
+  h2{ font-size:20px; margin:40px 0 12px; }
+  .intro{ margin:0 0 24px; }
+  .griglia{ display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:16px; }
+  .colore{ background:var(--white); border-radius:14px; overflow:hidden; box-shadow:0 1px 3px rgba(var(--navy-rgb),.25); }
+  .campione{ height:120px; display:flex; align-items:flex-end; padding:12px 14px; font-weight:700; font-size:14px; }
+  .campione.chiaro{ color:var(--navy); box-shadow:inset 0 0 0 1px rgba(var(--navy-rgb),.2); }
+  .campione.scuro{ color:var(--white); }
+  .info{ padding:14px; font-size:14px; }
+  .info h3{ margin:0 0 6px; font-size:16px; }
+  .info code{ background:rgba(var(--navy-rgb),.08); padding:1px 6px; border-radius:5px; font-size:13px; }
+  .info p{ margin:6px 0 0; }
+  table{ width:100%; border-collapse:collapse; background:var(--white); border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(var(--navy-rgb),.25); font-size:14px; }
+  th,td{ text-align:left; padding:10px 14px; vertical-align:top; border-bottom:1px solid rgba(var(--navy-rgb),.12); }
+  th{ background:var(--navy); color:var(--white); font-weight:600; }
+  tr:last-child td{ border-bottom:none; }
+  .num{ display:inline-flex; width:26px; height:26px; border-radius:50%; align-items:center; justify-content:center; font-weight:700; font-size:13px; margin-right:8px; }
+  .nota{ background:rgba(var(--sand-rgb),.2); border-left:4px solid var(--sand); padding:12px 16px; border-radius:0 10px 10px 0; font-size:14px; margin-top:24px; }
+  footer{ text-align:center; color:rgba(var(--navy-rgb),.6); font-size:13px; padding-bottom:32px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>DaVinciDocs — Palette colori</h1>
+  <p>I quattro colori del progetto e come li abbiamo numerati</p>
+</header>
+
+<main>
+  <p class="intro">Nel codice CSS i colori sono variabili in <code>css/style.css</code> (<code>:root</code>) e i commenti usano la numerazione qui sotto (<code>/* colore 2 */</code>). Per cambiare un colore in tutto il sito basta modificare il valore della variabile.</p>
+
+  <div class="griglia">
+    <div class="colore">
+      <div class="campione scuro" style="background:#213A46">Colore 1</div>
+      <div class="info">
+        <h3>Navy</h3>
+        <p><code>#213A46</code></p>
+        <p>variabile <code>--navy</code><br>in RGB: <code>--navy-rgb: 33,58,86</code></p>
+      </div>
+    </div>
+    <div class="colore">
+      <div class="campione chiaro" style="background:#CEAA80">Colore 2</div>
+      <div class="info">
+        <h3>Sabbia</h3>
+        <p><code>#CEAA80</code></p>
+        <p>variabile <code>--sand</code><br>in RGB: <code>--sand-rgb: 206,170,128</code></p>
+      </div>
+    </div>
+    <div class="colore">
+      <div class="campione chiaro" style="background:#FFFFFF">Colore 3</div>
+      <div class="info">
+        <h3>Bianco</h3>
+        <p><code>#FFFFFF</code></p>
+        <p>variabile <code>--white</code></p>
+      </div>
+    </div>
+    <div class="colore">
+      <div class="campione scuro" style="background:#D32F2F">Colore 4</div>
+      <div class="info">
+        <h3>Rosso</h3>
+        <p><code>#D32F2F</code></p>
+        <p>variabile <code>--rosso</code><br>hover: <code>--rosso-scuro: #B71C1C</code></p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Dove si usano</h2>
+  <table>
+    <thead><tr><th>Colore</th><th>Utilizzi principali</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="num" style="background:#213A46;color:#fff">1</span>Navy</td>
+        <td>Topbar, titoli e testi; icone di download ed eliminazione; sfondo del quadrato con il tipo di file (PDF, DOCX...); pulsante di chiusura della finestra di caricamento.</td>
+      </tr>
+      <tr>
+        <td><span class="num" style="background:#CEAA80;color:#213A46">2</span>Sabbia</td>
+        <td>Sottotitolo della pagina «La tua area»; riga con categoria, materia, data e dimensione sotto il titolo di ogni scheda; effetto al passaggio del mouse (hover) su scarica e sui pulsanti elenco/griglia; pulsante «Accedi» e bordo dei campi attivi.</td>
+      </tr>
+      <tr>
+        <td><span class="num" style="background:#fff;color:#213A46;box-shadow:inset 0 0 0 1px rgba(33,58,86,.4)">3</span>Bianco</td>
+        <td>Sfondo di pagina, schede e finestre; testo sopra navy e rosso.</td>
+      </tr>
+      <tr>
+        <td><span class="num" style="background:#D32F2F;color:#fff">4</span>Rosso</td>
+        <td>Pulsante «Carica materiali» dopo il login e «+ Carica materiale»; messaggi di errore; file mancante nel modulo; hover sul cestino (azione distruttiva).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="nota">
+    Il rosso era inizialmente <code>#FF0000</code>. È stato scurito a <code>#D32F2F</code> per avere più contrasto con il testo bianco (circa 5:1).
+  </div>
+</main>
+
+<footer>DaVinciDocs · ITET Leonardo da Vinci, Milazzo</footer>
+
+</body>
+</html>
