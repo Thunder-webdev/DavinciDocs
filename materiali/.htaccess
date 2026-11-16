@@ -1,0 +1,10 @@
+# Qui finiscono i file caricati dai docenti. Nessun accesso diretto dal browser:
+# i download passano da uno script PHP (api/scarica.php), che controlla chi chiede cosa.
+Require all denied
+
+# In piu': anche se per errore questa regola cadesse, un file .php caricato qui
+# non verrebbe mai eseguito come codice.
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+RemoveHandler .php .phtml .php3 .php4 .php5 .phar

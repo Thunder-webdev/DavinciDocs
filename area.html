@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Area personale del docente: i suoi materiali (api/materiali.php), caricamento ed
+       eliminazione (js/main_area.js). Stessa topbar e stesso login di home.html.
+       Non ancora collegata da home.html. -->
+  <title>DaVinciDocs — Area personale</title>
+  <!-- Poppins anche 600 e 700: li usano le schede dei materiali (style_area.css) -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Poppins:wght@400;600;700&family=Google+Sans+Flex:opsz,wght@1..144,1..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style_area.css">
+</head>
+<body class="pagina-area">
+
+<header class="topbar">
+  <a href="home.html" class="brand" aria-label="DaVinciDocs, torna alla home">
+    <img src="img/logo.svg" width="34" height="34" alt="">
+    <span>DaVinciDocs</span>
+  </a>
+  <div class="search-wrap">
+    <div class="search-bar">
+      <img src="img/icon-search.svg" width="16" height="16" alt="">
+      <input type="text" placeholder="Cerca dispense, esercitazioni, materiali..." aria-label="Cerca">
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <div class="flags">
+      <img src="img/flag-it.svg" width="32" height="32" alt="Italiano">
+      <img src="img/flag-en.svg" width="32" height="32" alt="English">
+    </div>
+    <a href="#" class="topbar-username" id="topbarUsername" hidden><span class="username-full" id="usernameFull"></span><span class="username-initials" id="usernameInitials"></span></a>
+    <div class="menu-wrap">
+      <button class="menu-pill" id="menuBtn" type="button" aria-haspopup="true" aria-expanded="false">
+        <span>MENU</span>
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+          <line x1="0" y1="2" x2="20" y2="2" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="0" y1="12" x2="20" y2="12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="menu-dropdown" id="menuDropdown">
+        <a href="#" class="menu-item" id="loginItem">Login</a>
+        <div class="menu-divider"></div>
+        <a href="area.html" class="menu-item" id="caricaItem">Carica materiali</a>
+        <a href="#" class="menu-item">Materiali per indirizzo</a>
+        <div class="menu-divider"></div>
+        <button class="menu-item" id="logoutItem" type="button" hidden>Logout</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="area">
+  <div class="area-head">
+    <div>
+      <h1>La tua area</h1>
+      <p class="lead">I materiali che hai condiviso finora</p>
+    </div>
+    <div class="area-head-azioni">
+      <div class="view-toggle" role="group" aria-label="Tipo di visualizzazione">
+        <button type="button" class="view-toggle-btn" id="vistaElenco" aria-pressed="true" aria-label="Vista a elenco">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="1" y="2.5" width="16" height="3" rx="1" fill="currentColor"/>
+            <rect x="1" y="7.5" width="16" height="3" rx="1" fill="currentColor"/>
+            <rect x="1" y="12.5" width="16" height="3" rx="1" fill="currentColor"/>
+          </svg>
+        </button>
+        <button type="button" class="view-toggle-btn" id="vistaGriglia" aria-pressed="false" aria-label="Vista a griglia">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="1" y="1" width="7" height="7" rx="1.5" fill="currentColor"/>
+            <rect x="10" y="1" width="7" height="7" rx="1.5" fill="currentColor"/>
+            <rect x="1" y="10" width="7" height="7" rx="1.5" fill="currentColor"/>
+            <rect x="10" y="10" width="7" height="7" rx="1.5" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+      <button type="button" class="btn-rosso" id="openUpload">+ Carica materiale</button>
+    </div>
+  </div>
+  <div class="area-list" id="areaList"></div>
+</main>
+
+<!-- ===== FINESTRA DI LOGIN (identica a home.html) ===== -->
+<div class="modal-backdrop" id="loginBackdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <button class="modal-close" id="modalClose" type="button" aria-label="Chiudi">&times;</button>
+    <div class="modal-left">
+      <div class="modal-left-top">
+        <div class="modal-left-brand">
+          <img src="img/logo.svg" width="30" height="30" alt="Logo DaVinciDocs">
+          <span>DaVinciDocs</span>
+        </div>
+        <div class="modal-left-copy">
+          <h2>IL PORTO SICURO<br>PER IL TUO STUDIO</h2>
+          <p>La piattaforma dell'ITET Leonardo da Vinci di Milazzo per condividere e ritrovare dispense, esercitazioni e materiali di ogni indirizzo di studio</p>
+        </div>
+      </div>
+      <div class="modal-left-foot">ITET Leonardo da Vinci - Milazzo</div>
+    </div>
+    <div class="modal-right">
+      <h3 id="authTitle">Accedi al tuo account</h3>
+      <p id="authSubtitle">Inserisci le tue credenziali per accedere</p>
+      <form id="authForm">
+        <label class="field-label" for="authEmail">Email istituzionale</label>
+        <input class="field-input" type="email" id="authEmail" placeholder="nome.cognome@davincimilazzo.edu.it" required>
+        <label class="field-label" for="authPassword">Password</label>
+        <div class="field-password">
+          <input class="field-input" type="password" id="authPassword" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required>
+          <button class="toggle-password" id="togglePassword" type="button" aria-label="Mostra password" aria-pressed="false">
+            <img src="img/icon-eye.svg" width="20" height="20" alt="">
+          </button>
+        </div>
+        <div class="field-row">
+          <label class="checkbox-label"><input type="checkbox"> Ricordami</label>
+          <a href="#" class="field-link">Password dimenticata?</a>
+        </div>
+        <button type="submit" class="auth-submit" id="authSubmit">Accedi</button>
+      </form>
+      <p class="auth-error" id="authError" hidden></p>
+      <p class="auth-note">Gli account docente sono creati dalla segreteria didattica</p>
+    </div>
+  </div>
+</div>
+<!-- ===== FINE FINESTRA DI LOGIN ===== -->
+
+<!-- ===== FINESTRA "CARICA MATERIALE" ===== -->
+<div class="modal-backdrop" id="uploadBackdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="uploadTitle">
+    <button class="modal-close" id="uploadClose" type="button" aria-label="Chiudi">&times;</button>
+    <div class="modal-right">
+      <h3 id="uploadTitle">Carica un nuovo materiale</h3>
+      <p id="uploadSubtitle">Compila i campi e allega il file da condividere</p>
+      <form id="uploadForm">
+        <label class="field-label" for="uploadTitolo">Titolo</label>
+        <input class="field-input" type="text" id="uploadTitolo" placeholder="Es. Normalizzazione (1NF-3NF)" required>
+
+        <!-- le categorie le mette js/main_area.js con i dati di api/materie.php
+             (value = id della tabella CATEGORIA) -->
+        <label class="field-label" for="uploadCategoria">Categoria</label>
+        <select class="field-select" id="uploadCategoria" required>
+          <option value="" selected disabled>Scegli la categoria</option>
+        </select>
+
+        <!-- Indirizzo, Materia e Anno sono a cascata e li riempie js/main_area.js con i
+             dati di api/materie.php (value = id di INDIRIZZO / MATERIA; l'elenco degli
+             indirizzi e' completo, materie e anni sono quelli del docente in PIANO_STUDI). Un docente puo' avere classi di piu' indirizzi
+             (es. Informatica al biennio), quindi l'indirizzo si sceglie qui. -->
+        <label class="field-label" for="uploadIndirizzo">Indirizzo di studio</label>
+        <select class="field-select" id="uploadIndirizzo" required>
+          <option value="" selected disabled>Scegli l'indirizzo</option>
+        </select>
+
+        <label class="field-label" for="uploadMateria">Materia</label>
+        <select class="field-select" id="uploadMateria" required disabled>
+          <option value="" selected disabled>Prima scegli l'indirizzo</option>
+        </select>
+
+        <label class="field-label" for="uploadAnno">Anno</label>
+        <select class="field-select" id="uploadAnno" required disabled>
+          <option value="" selected disabled>Prima scegli la materia</option>
+        </select>
+
+        <label class="field-label" for="uploadDescrizione">Descrizione (opzionale)</label>
+        <textarea class="field-input" id="uploadDescrizione" placeholder="Qualche riga su cosa contiene il materiale"></textarea>
+
+        <label class="field-label" for="uploadFile">File</label>
+        <div class="field-file">
+          <button type="button" class="field-file-btn" id="uploadFileBtn">Scegli file</button>
+          <span class="field-file-nome" id="uploadFileNome">Nessun file selezionato</span>
+          <!-- niente "required": su un campo nascosto il browser blocca l'invio senza
+               mostrare l'avviso. Il controllo e' fatto nel submit (js/main_area.js).
+               L'attributo accept (formati ammessi) lo imposta lo stesso file. -->
+          <input type="file" id="uploadFile" hidden>
+        </div>
+
+        <button type="submit" class="btn-rosso upload-submit" id="uploadSubmit">Carica</button>
+        <p class="auth-error" id="uploadErrore" hidden></p>
+      </form>
+      <p class="upload-note">Formati ammessi: documenti PDF e Office, ZIP, immagini, file di grafica, CAD e codice. Massimo 20 MB.</p>
+    </div>
+  </div>
+</div>
+<!-- ===== FINE FINESTRA "CARICA MATERIALE" ===== -->
+
+<!-- ===== FINESTRA DI CONFERMA (elimina materiale) ===== -->
+<div class="modal-backdrop" id="confirmBackdrop">
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmTesto">
+    <div class="modal-right">
+      <h3 id="confirmTitle">Eliminare questo materiale?</h3>
+      <p id="confirmTesto" class="confirm-testo"></p>
+      <p class="auth-error" id="confirmErrore" hidden></p>
+      <div class="confirm-azioni">
+        <button type="button" class="btn-outline" id="confirmAnnulla">Annulla</button>
+        <button type="button" class="btn-rosso" id="confirmOk">Elimina</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ===== FINE FINESTRA DI CONFERMA ===== -->
+
+<script src="js/main.js" defer></script>
+<script src="js/main_area.js" defer></script>
+</body>
+</html>

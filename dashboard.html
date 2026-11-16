@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DaVinciDocs</title>
+  <!-- Font da Google Fonts (serve la rete). Per lavorare offline: scaricare i .woff2
+       in css/fonts/ e dichiararli con @font-face in style.css. -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Poppins:wght@400&family=Google+Sans+Flex:opsz,wght@1..144,1..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_dashboard.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="img/logo.svg" width="34" height="34" alt="Logo DaVinciDocs">
+    <span>DaVinciDocs</span>
+  </div>
+  <div class="search-wrap">
+    <div class="search-bar">
+      <img src="img/icon-search.svg" width="16" height="16" alt="">
+      <input type="text" placeholder="Cerca dispense, esercitazioni, materiali..." aria-label="Cerca">
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <div class="flags">
+      <img src="img/flag-it.svg" width="32" height="32" alt="Italiano">
+      <img src="img/flag-en.svg" width="32" height="32" alt="English">
+    </div>
+    <a href="#" class="topbar-username" id="topbarUsername" hidden><span class="username-full" id="usernameFull"></span><span class="username-initials" id="usernameInitials"></span></a>
+    <div class="menu-wrap">
+      <button class="menu-pill" id="menuBtn" type="button" aria-haspopup="true" aria-expanded="false">
+        <span>MENU</span>
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+          <line x1="0" y1="2" x2="20" y2="2" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="0" y1="12" x2="20" y2="12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="menu-dropdown" id="menuDropdown">
+        <a href="#" class="menu-item" id="loginItem">Login</a>
+        <div class="menu-divider"></div>
+        <a href="area.html" class="menu-item" id="caricaItem">Carica materiali</a>
+        <a href="#" class="menu-item">Materiali per indirizzo</a>
+        <div class="menu-divider"></div>
+        <button class="menu-item" id="logoutItem" type="button" hidden>Logout</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <div class="main-header">
+      <div class="header-titles">
+        <h1>Scegli il tuo indirizzo di studi per iniziare</h1>
+      </div>
+    </div>
+
+    <div class="sectors-wrapper">
+      <section class="sectors-grid" id="carousel">
+
+        <a href="./Informatica_e_telecomunicazioni/Dashboard_Inf.html" class="sector-card informatica">
+          <div class="sector-info">
+            <h2>Informatica e <br>Telecomunicazioni</h2>
+            <p>Informatica, Sistemi e Reti, TPSI, Telecomunicazioni</p>
+          </div>
+        </a>
+
+        <a href="./Amministrazione,_finanza_e_marketing/Dashboard_Afm.html" class="sector-card afm">
+          <div class="sector-info">
+            <h2>Amministrazione <br>Finanza e Marketing</h2>
+            <p>Economia Aziendale, Diritto, Economia Politica</p>
+          </div>
+        </a>
+
+        <a href="./Costruzione,_ambiente_e_territorio/Dashboard_Cat.html" class="sector-card cat">
+          <div class="sector-info">
+            <h2>Costruzione, <br>Ambiente e Territorio</h2>
+            <p>Topografia, Progettazione, Sicurezza sul Lavoro</p>
+          </div>
+        </a>
+
+        <a href="./Grafica_e_comunicazione/Dashboard_Graf.html" class="sector-card grafica">
+          <div class="sector-info">
+            <h2>Grafica e Comunicazione</h2>
+            <p>Progrttazione Multimediale, Laboratori Tecnici</p>
+          </div>
+        </a>
+
+        <a href="./Trasporti_e_logistica/Dashboard_Trasp_Logi.html" class="sector-card trasporti">
+          <div class="sector-info">
+            <h2>Trasporti e Logistica</h2>
+            <p>Logistica, Meccanica e Macchine, Scienze della <br>Navigazione</p>
+          </div>
+        </a>
+
+        <a href="./Turismo/Dashboard_Tur.html" class="sector-card turismo">
+          <div class="sector-info">
+            <h2>Turismo</h2>
+            <p>Geografia Turistica, Discipline Aziendali, Diritto e <br>Legislazione</p>
+          </div>
+        </a>
+
+        <h1>Aggiunti di recenti</h1>
+
+      </section>
+    </div>
+  </main>
+
+  <script src="Javascript/script2.js"></script>
+
+</body>

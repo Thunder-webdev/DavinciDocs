@@ -1,0 +1,15 @@
+# .htaccess — limiti di caricamento di PHP per tutto il sito.
+# 20 MB e' il massimo per file deciso per l'app (api/carica.php e js/main_area.js).
+# post_max_size e' piu' grande perche' la richiesta contiene anche gli altri campi del form.
+# Il tetto in PHP serve a rifiutare file enormi PRIMA che arrivino al codice dell'app.
+# php_value funziona solo con PHP come modulo di Apache (Laragon); il blocco
+# <IfModule> evita un errore 500 se il server usa PHP in un altro modo: in quel caso
+# i valori vanno messi nel php.ini (upload_max_filesize = 20M, post_max_size = 25M).
+# display_errors off: oltre post_max_size PHP scrive un avviso PRIMA che parta lo script
+# (quindi prima di risposte_json.php): stampato, rovinerebbe la risposta JSON.
+# Cosi' l'avviso va solo nel log di PHP.
+<IfModule php_module>
+    php_value upload_max_filesize 20M
+    php_value post_max_size 25M
+    php_flag display_errors off
+</IfModule>
