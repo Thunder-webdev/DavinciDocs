@@ -109,12 +109,12 @@ header.topbar{
 }
 
 /* COLORS */
-.informatica {border-color: #B72027;}
-.afm {border-color: #C05A2C;}
-.cat {border-color: #43a8fc;}
-.grafica {border-color: #FFF140;}
-.trasporti {border-color: #223B82;}
-.turismo {border-color: #6F2A48;}
+.informatica {border-color: #e30613;}
+.afm {border-color: #e96012;}
+.cat {border-color: #177a9d;}
+.grafica {border-color: #FFed00;}
+.trasporti {border-color: #27387c;}
+.turismo {border-color: #e6007e;}
 
 /* Main content */
 .post-zone {
