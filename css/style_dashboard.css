@@ -69,7 +69,6 @@ header.topbar{
 
 .sectors-grid {
   max-height: 1200px;
-  margin: auto;
   display: flex;
   grid-template-columns: repeat(3,1fr);
   gap: 30px;
@@ -133,20 +132,21 @@ header.topbar{
 
 .main-content {
   position:relative; overflow:hidden; flex:1 1 auto;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:88px 24px 156px; /* bottom > top: il contenuto centrato sta circa 1cm piu' in alto */
+  display:flex; flex-direction:column; justify-content:center;
+  padding:0 24px 156px; /* bottom > top: il contenuto centrato sta circa 1cm piu' in alto */
   background-image:url("../img/hero-pattern.svg");
-  background-repeat:repeat; background-size:220px 220px;
+  background-repeat:repeat;
+  background-size:190px 150px;
 }
 
 .header-titles {
-  text-align: center;
+  text-align: left;
   padding: 40px 0 40px 0;
 }
 
 .recently-added-titles {
-  text-align: center;
-  padding: 40px 0 20px 0;
+  text-align: left;
+  padding: 60px 0 20px 0;
 }
 
 .content-section {
@@ -172,4 +172,87 @@ header.topbar{
 .sector-card {
   flex: 0 0 630px;    
   text-wrap: nowrap;  
+}
+
+/* ===== Finestra di login (modal); .modal-backdrop/.modal/.field-* riusati da style_area.css ===== */
+.modal-backdrop{
+  display:none; position:fixed; inset:0; z-index:100;
+  align-items:center; justify-content:center; padding:24px;
+  background:rgba(var(--navy-rgb),0.55);
+}
+.modal-backdrop.open{ display:flex; }
+.modal{
+  position:relative; width:100%; max-width:920px; max-height:92vh;
+  background:var(--white); border-radius:20px; overflow:hidden;
+  display:flex; box-shadow:0px 8px 12px rgba(var(--navy-rgb),0.3), 0px 16px 24px 4px rgba(var(--navy-rgb),0.2);
+}
+.modal-close{
+  position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%;
+  border:none; background:rgba(255,255,255,0.15); color:var(--white); font-size:20px; line-height:1;
+  cursor:pointer; z-index:2; transition:background-color .12s ease;
+}
+.modal-close:hover{ background:rgba(255,255,255,0.28); }
+
+.modal-left{
+  flex:0 0 42%; color:var(--white);
+  background-color:var(--navy); /*background-image:url("../img/hero-pattern.svg");*/
+  background-repeat:repeat; background-size:160px 160px;
+  padding:36px 32px; display:flex; flex-direction:column; justify-content:space-between;
+}
+.modal-left-brand{ display:flex; align-items:center; gap:10px; }
+.modal-left-brand span{ color:var(--white); font-size:16px; font-weight:700; }
+.modal-left-copy h2{
+  margin-top:28px; color:var(--sand); font-family:'Google Sans Flex',sans-serif; font-weight:700;
+  font-size:25px; line-height:1.25; font-variation-settings:'opsz' 144;
+}
+.modal-left-copy p{ margin-top:14px; color:rgba(255,255,255,0.75); font-family:'Poppins',sans-serif; font-size:13.5px; line-height:1.55; }
+.modal-left-foot{ color:rgba(255,255,255,0.6); font-family:'Poppins',sans-serif; font-size:12px; }
+
+.modal-right{ flex:1 1 auto; padding:40px 36px; overflow-y:auto; }
+
+#authTitle{ margin-top:28px; color:var(--navy); font-family:'Google Sans Flex',sans-serif; font-weight:700; font-size:23px; font-variation-settings:'opsz' 144; }
+#authSubtitle{ margin-top:6px; color:rgba(var(--navy-rgb),0.65); font-family:'Poppins',sans-serif; font-size:13.5px; }
+
+.field-label{ display:block; margin-top:20px; margin-bottom:8px; color:var(--navy); font-size:13px; font-weight:600; }
+.field-input{
+  width:100%; padding:12px 16px; border:1px solid rgba(var(--navy-rgb),0.25); border-radius:10px;
+  font-size:14px; color:var(--navy); outline:none; transition:border-color .12s ease;
+}
+.field-input:focus{ border-color:var(--sand); }
+.field-input::placeholder{ color:rgba(var(--navy-rgb),0.35); }
+
+/* campo password con pulsante "occhio" per mostrare/nascondere il testo */
+.field-password{ position:relative; }
+.field-password .field-input{ padding-right:52px; }
+.field-password .field-input::-ms-reveal{ display:none; } /* toglie l'occhio nativo di Edge, gia' c'e' il nostro */
+.toggle-password{
+  position:absolute; top:50%; right:8px; transform:translateY(-50%);
+  width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+  border:none; border-radius:50%; background:none; cursor:pointer; opacity:0.6;
+  transition:background-color .12s ease, opacity .12s ease;
+}
+.toggle-password:hover{ background:rgba(var(--navy-rgb),0.08); opacity:1; }
+.toggle-password[aria-pressed="true"]{ opacity:1; }
+.toggle-password img{ display:block; }
+
+.field-row{ margin-top:16px; display:flex; align-items:center; justify-content:space-between; font-size:13px; }
+.checkbox-label{ display:flex; align-items:center; gap:8px; color:rgba(var(--navy-rgb),0.75); }
+.field-link{ color:var(--navy); font-weight:600; }
+.field-link:hover{ color:var(--sand); }
+
+.auth-submit{
+  margin-top:22px; width:100%; padding:13px; border:none; border-radius:100px;
+  background:var(--sand); color:var(--white); font-size:14px; font-weight:700;
+  letter-spacing:0.1px; cursor:pointer; box-shadow:var(--shadow-1);
+  transition:background-color .12s ease, color .12s ease;
+}
+.auth-submit:hover{ background:var(--navy); color:var(--sand); }
+
+.auth-note{ margin-top:10px; text-align:center; font-family:'Poppins',sans-serif; font-size:11.5px; color:rgba(var(--navy-rgb),0.5); }
+.auth-error{ margin-top:10px; text-align:center; font-family:'Poppins',sans-serif; font-size:12.5px; color:var(--rosso); /* colore 4 */ }
+@media (max-width:720px){
+  .modal{ flex-direction:column; }
+  .modal-left{ flex:0 0 auto; padding:28px 24px; }
+  .modal-left-copy h2{ font-size:21px; }
+  .modal-right{ padding:28px 24px; }
 }

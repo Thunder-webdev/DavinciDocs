@@ -71,13 +71,13 @@ header.topbar{
   display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
   padding:88px 24px 156px; /* bottom > top: il contenuto centrato sta circa 1cm piu' in alto */
   background-image:url("../img/hero-pattern.svg");
-  background-repeat:repeat; background-size:220px 220px;
+  background-repeat:repeat; background-size:190px 150px;
 }
 .hero::after{
   content:''; position:absolute; inset:0; pointer-events:none;
   background:radial-gradient(ellipse 60% 55% at 50% 38%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 72%);
 }
-.hero-inner{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; }
+.hero-inner{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center;}
 
 /* Material 3 type scale: Display Medium (title) / Headline Small (subtitle) / Label Large (stats) */
 .hero h1{
@@ -98,8 +98,8 @@ header.topbar{
 .hero-cta .btn-primary:hover{ background:var(--navy); color:var(--sand); box-shadow:var(--shadow-2); }
 .hero-cta .btn-primary.carica{ background:var(--rosso); color:var(--white); }
 .hero-cta .btn-primary.carica:hover{ background:var(--rosso-scuro); color:var(--white); }
-.hero-cta .btn-secondary{ background:transparent; color:var(--navy); border:1px solid rgba(var(--navy-rgb),0.3); }
-.hero-cta .btn-secondary:hover{ background:rgba(var(--navy-rgb),0.08); border-color:var(--navy); }
+.hero-cta .btn-secondary{ background-color: white; color:var(--navy); border:1px solid rgba(var(--navy-rgb),0.3); }
+.hero-cta .btn-secondary:hover{ background-color: whitesmoke; border:1px solid rgba(var(--navy-rgb),0.3); }
 .hero-stats{ margin-top:32px; display:flex; gap:24px; flex-wrap:wrap; justify-content:center; color:rgba(var(--navy-rgb),0.55); font-size:14px; font-weight:500; letter-spacing:0.1px; }
 .hero-stats b{ color:var(--navy); font-weight:700; }
 
@@ -140,7 +140,8 @@ header.topbar{
 
 .modal-left{
   flex:0 0 42%; color:var(--white);
-  background-color:var(--navy); background-image:url("../img/hero-pattern.svg");
+  background-color:var(--navy);  /*background-image:url("../img/hero-pattern.svg");*/
+  background-repeat:repeat; background-size:190px 150px;
   background-repeat:repeat; background-size:160px 160px;
   padding:36px 32px; display:flex; flex-direction:column; justify-content:space-between;
 }
